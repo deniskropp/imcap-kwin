@@ -1,4 +1,4 @@
-#define _DEBUG !NDEBUG // from CMake
+//#define _DEBUG !NDEBUG // from CMake
 
 #include <errno.h>
 #include <fcntl.h>
@@ -111,15 +111,13 @@ int main()
 	std::cout << "\nReceived " << nReadTotal << " bytes.\n";
 #endif
 
-	QString user = getenv("USER");
-	std::string dir = "/tmp/";
-	dir += user.toStdString();
-	mkdir(dir.c_str(), 0700);
-	dir += "/screenshot";
+	QString home = getenv("HOME");
+	std::string dir = home.toStdString() + "/Screenshots/";
 	mkdir(dir.c_str(), 0700);
 	errno = 0;
 
-	std::string filename = "/tmp/" + user.toStdString() + "/screenshot/";
+	std::string filename = dir;
+
 	char filenamebuf[100];
 	sprintf(filenamebuf, "%.4d%.2d%.2d-%.2d%.2d%.2d-%lld.png",
 			tm->tm_year + 1900, tm->tm_mon + 1, tm->tm_mday,
@@ -134,8 +132,9 @@ int main()
 		return -5;
 	}
 
+	std::cout << filename;
+
 	// TODO: Logging, time of operation
 
 	return 0;
 }  //main()
-

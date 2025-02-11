@@ -1,12 +1,12 @@
 [Desktop Entry]
 Comment=
-Exec=/bin/imcap-kwin
+Exec=/usr/bin/imcap-kwin
 GenericName=
 Icon=system-run
 MimeType=
 Name=imcap-kwin
-Path=/bin/
-StartupNotify=false
+Path=/usr/bin/
+StartupNotify=true
 Terminal=false
 TerminalOptions=\s--noclose
 Type=Application
